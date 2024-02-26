@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::title}, ~{::#content})}">
+">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <title>HelpService | Home</title>
+</head>
+<body>
+
+<main id="content">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="/assets/img/prormos/1.png" class="card-img-top" alt="Promo 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Seja um Agente Go.</h5>
+                        <p class="card-text"></p>
+                        <a href="/auth/cadastro"  class="btn btn-primary">Saiba mais </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="/assets/img/prormos/2.png" class="card-img-top" alt="Promo 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Maior plataforma de autônomos do Brasil.</h5>
+                        <p class="card-text">Venha ser um integrante da maior plataforma de autônomos do Brasil.</p>
+                        <a href="/auth/cadastro"  class="btn btn-primary">Saiba mais </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="/assets/img/prormos/3.png" class="card-img-top" alt="Promo 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Educadores e professores.</h5>
+                        <p class="card-text">Oportunidade imperdível para aqueles que buscam se familiarizar com nossos afiliados.</p>
+                        <a href="/auth/cadastro"  class="btn btn-primary">Saiba mais </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="/assets/img/prormos/4.png" class="card-img-top" alt="Promo 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Não hesite em contatar nossos Goagentes</h5>
+                        <p class="card-text">Eles estão prontos para proporcionar a assistência e suporte necessários.</p>
+                        <a href="/auth/cadastro"  class="btn btn-primary">Saiba mais </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="/assets/img/prormos/5.png" class="card-img-top" alt="Promo 5">
+                    <div class="card-body">
+                        <h5 class="card-title">Suas compras com uma experiência premium</h5>
+                        <p class="card-text">Personal Shoppers prontos para tornar a sua experiência de compras mais eficiente.</p>
+                        <a href="/auth/cadastro"  class="btn btn-primary">Saiba mais </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="/assets/img/prormos/6.png" class="card-img-top" alt="Promo 6">
+                    <div class="card-body">
+                        <h5 class="card-title">Alcance o estrelato nas redes sociais.</h5>
+                        <p class="card-text">Se destaque e tenha maior visibilidade e sucesso nas redes sociais.</p>
+                        <a href="/auth/cadastro"  class="btn btn-primary">Saiba mais </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--CARROSEL-->
+        <div class="ContainerCarousel">
+
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button tcarype="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+
+
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img th:src="@{/assets/img/banners/1.png}" class=" w-100" alt="Imagem 1">
+                        </div>
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img th:src="@{/assets/img/banners/2.png}" class=" w-100" alt="Imagem 1">
+                        </div>
+                        <div class="carousel-item active"  data-bs-interval="10000">
+                            <img th:src="@{/assets/img/banners/3.png}" class="w-100" alt="Imagem 1">
+                        </div>
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img th:src="@{/assets/img/banners/4.png}" class="w-100" alt="Imagem 1">
+                        </div>
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+
+            <!--STYLE-->
+            <div class="ContainerCard">
+
+
+
+        <div style="height: 180px;"></div>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout :: layout(~{::title}, ~{::#content})">
+<head>
+    <title>Agenda | HelpService</title>
+</head>
+<body>
+
+<div id="content">
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="container my-4">
+        <h2>Agenda de Serviços</h2>
+
+        <div class="card w-100 mt-5">
+            <div class="card-body">
+
+                <div th:if="${successMessage != null}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
+                <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
+                <form class="row" method="post" th:action="@{/prestador/agenda/pesquisa}">
+                    <div class="col">
+                        <label for="data-inicio">Data de início</label>
+                        <input class="form-control" type="date" name="data-inicio" id="data-inicio" required>
+                    </div>
+                    <div class="col">
+                        <label for="data-fim">Data de finalização</label>
+                        <input class="form-control" type="date" name="data-fim" id="data-fim" required>
+                    </div>
+                    <div class="col d-flex flex-column-reverse">
+                        <button type="submit" class="btn btn-primary align-bottom">Buscar <i class="bi bi-search"></i></button>
+                    </div>
+                    <div class="col d-flex flex-column-reverse">
+                        <a th:href="@{/prestador/agenda}" class="btn btn-secondary align-bottom">Todos os serviços</a>
+                    </div>
+                </form>
+                <table class="table w-100">
+                    <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Especialidade</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Status</th>
+                        <th>Cancelar</th>
+                        <th>Confirmar</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="agendamento : ${agendamentos}">
+                        <!--<td ><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="${agendamento.cliente.nome}"></button></td>-->
+                    <tr th:each="agendamento : ${agendamentos}">
+                        <td class=" fw-medium text-primary botao-abrir-especificacoes"  style="cursor: pointer; " data-bs-toggle="modal"  th:data-bs-target="'#prestadorInfo' + ${agendamento?.id}">
+                            <span th:text="${agendamento.cliente.nome}" class=" mr-1 "> </span>
+                            <i class="bi bi-clipboard "></i>
+                        <td th:text="${agendamento.cliente.nome}"></td>
+                        <td th:text="${agendamento.servico.nome}"></td>
+                        <td th:text="${agendamento.data}"></td>
+                        <td th:text="${agendamento.hora}"></td>
+                        <td th:text="${agendamento.statusAgendamento.descricao}"></td>
+                        <td>
+                            <button class="btn btn-danger" style="width: 8rem" th:disabled="${not agendamento.isCancelable()}" data-bs-toggle="modal" th:data-bs-target="'#cancelModal' + ${agendamento.id}">
+                                Cancelar <i class="bi bi-x-square-fill ms-2"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" style="width: 8rem" th:disabled="${not agendamento.isConfirmable()}" data-bs-toggle="modal" th:data-bs-target="'#confirmModal' + ${agendamento.id}">
+                                Confirmar <i class="bi bi-check-square-fill ms-2"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr th:unless="${busca_agendamento}" th:each="agendamento : ${busca_agendamento}">
+                        <td th:text="${agendamento.cliente.nome}"></td>
+                        <td th:text="${agendamento.servico.nome}"></td>
+                        <td th:text="${agendamento.data}"></td>
+                        <td th:text="${agendamento.hora}"></td>
+                        <td th:text="${agendamento.statusAgendamento.descricao}"></td>
+                        <td>
+                            <button class="btn btn-danger" style="width: 8rem" th:disabled="${not agendamento.isCancelable()}" data-bs-toggle="modal" th:data-bs-target="'#cancelModal' + ${agendamento.id}">
+                                Cancelar <i class="bi bi-x-square-fill ms-2"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" style="width: 8rem" th:disabled="${not agendamento.isConfirmable()}" data-bs-toggle="modal" th:data-bs-target="'#confirmModal' + ${agendamento.id}">
+                                Confirmar <i class="bi bi-check-square-fill ms-2"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div th:each="agendamento : ${agendamentos}" th:if="${agendamento.isCancelable()}">
+        <div class="modal fade" th:id="'cancelModal' + ${agendamento?.id}" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cancelModalLabel">Confirmar Ação</h5>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja cancelar o agendamento do serviço: <strong th:text="${agendamento.servico.nome}"></strong>?
+                    </div>
+                    <form class="modal-footer" method="post" th:action="@{/prestador/agenda/cancelar}">
+                        <input type="hidden" name="agendamentoId" th:value="${agendamento.id}">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:each="agendamento : ${agendamentos}" th:if="${agendamento.isConfirmable()}">
+        <div class="modal fade" th:id="'confirmModal' + ${agendamento?.id}" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmModalLabel">Confirmar Ação</h5>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja confirmar o agendamento do serviço: <strong th:text="${agendamento.servico.nome}"></strong>?
+                    </div>
+                    <form class="modal-footer" method="post" th:action="@{/prestador/agenda/confirmar}">
+                        <input type="hidden" name="agendamentoId" th:value="${agendamento.id}">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Confirmar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal  informações cliente-->
+    <div th:each="agendamento : ${agendamentos}" >
+        <div class="modal fade" th:id="'prestadorInfo' + ${agendamento?.id}" tabindex="-1" role="dialog" aria-labelledby="infoPrestadorModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Informações do prestador</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Nome: <strong th:text="${agendamento.cliente.nome}"></strong></p>
+                        <p>Email: <strong th:text="${agendamento.cliente.email}"></strong></p>
+                        <p>Telefone: <strong th:text="${agendamento.cliente?.telefone}"></strong></p>
+                        <p>Data de Nascimento: <strong th:text="${agendamento.cliente?.dataNascimento}"></strong></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout :: layout(~{::title}, ~{::#content})">
+<head>
+    <title>HelpService | FAQs</title>
+</head>
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<body>
+
+<main id="content">
+    <div th:replace="fragments/header :: header"></div>
+
+    <div id="pgt" method="post" th:action="@{footer/faq}">
+        <section >
+            <h1>Perguntas Frequentes</h1>
+            <details>
+                <summary>Como faço para criar uma conta na plataforma?</summary>
+                <p></p>
+                <p>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample-1" aria-expanded="false" aria-controls="collapseWidthExample-1">
+                        Resposta
+                    </button>
+                </p>
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample-1">
+                        <div class="card card-body" style="width: 600px; border: 1px solid black;">
+                            Para criar uma conta, vá até a página inicial da plataforma e clique em "Cadastre-se". Siga as instruções para preencher seus dados pessoais e criar uma senha.</div>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Como faço para solicitar um serviço?</summary>
+                <p></p>
+                <p>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample-2" aria-expanded="false" aria-controls="collapseWidthExample-2">
+                        Resposta
+                    </button>
+                </p>
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample-2">
+                        <div class="card card-body" style="width: 600px; border: 1px solid black;">
+                            Para solicitar um serviço, faça login na plataforma, vá para a seção apropriada e siga as instruções específicas para o serviço desejado. Preencha os detalhes relevantes e clique em "Agendar".
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Quanto tempo leva para receber uma resposta do provedor de serviços?</summary>
+                <p></p>
+                <p>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample-3" aria-expanded="false" aria-controls="collapseWidthExample-3">
+                        Resposta
+                    </button>
+                </p>
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample-3">
+                        <div class="card card-body" style="width: 600px; border: 1px solid black;">
+                            O tempo de resposta varia de acordo com o provedor e o serviço. Algumas respostas podem ser instantâneas, enquanto outras podem levar algumas horas ou dias. Verifique a seção de mensagens ou notificações para acompanhar as respostas.</div>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Posso agendar um serviço para uma data específica no futuro?</summary>
+                <p>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample-4" aria-expanded="false" aria-controls="collapseWidthExample-4">
+                        Resposta
+                    </button>
+                </p>
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample-4">
+                        <div class="card card-body" style="width: 600px; border: 1px solid black;">
+                            Sim, muitas plataformas permitem que você agende serviços para uma data e hora específicas. Certifique-se de verificar as opções de agendamento ao fazer sua solicitação.
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Como faço para cancelar uma solicitação de serviço?</summary>
+                <p>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample-5" aria-expanded="false" aria-controls="collapseWidthExample-5">
+                        Resposta
+                    </button>
+                </p>
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample-5">
+                        <div class="card card-body" style="width: 600px; border: 1px solid black;">
+                            Você pode cancelar uma solicitação pendente indo para a seção histórico de serviços e selecionando a opção de cancelar, desde que o provedor de serviços ainda não tenha começado a trabalhar nela.
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Quais são as vantagens de usar uma plataforma de serviços em vez de contratar diretamente um profissional?</summary>
+                <p>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample-6" aria-expanded="false" aria-controls="collapseWidthExample-6">
+                        Resposta
+                    </button>
+                </p>
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample-6">
+                        <div class="card card-body" style="width: 600px; border: 1px solid black;">
+                            Usar uma plataforma de serviços oferece a conveniência de acesso a profissionais verificados, opções de pagamento seguras e um local centralizado para gerenciar serviços.</div>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Quais são as políticas de proteção de dados da plataforma?</summary>
+                <p>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample-7" aria-expanded="false" aria-controls="collapseWidthExample-7">
+                        Resposta
+                    </button>
+                </p>
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample-7">
+                        <div class="card card-body" style="width: 600px; border: 1px solid black;">
+                            Nós seguimos rigorosas políticas de proteção de dados. Consulte nossa Política de Privacidade para obter informações detalhadas.</div>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>É seguro compartilhar informações pessoais com profissionais da plataforma?</summary>
+                <p>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample-8" aria-expanded="false" aria-controls="collapseWidthExample-8">
+                        Resposta
+                    </button>
+                </p>
+                <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample-8">
+                        <div class="card card-body" style="width: 600px; border: 1px solid black;">
+                            Sim, sua privacidade é importante para nós. Mantemos suas informações seguras e confidenciais.</div>
+                    </div>
+                </div>
+            </details>
+        </section>
+    </div>
+
+    <div style="height: 180px;"></div>
+    <div th:replace="fragments/footer :: footer"></div>
+
+</main>
+
+</body>
+</html>
